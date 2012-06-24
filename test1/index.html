@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dijit/themes/claro/claro.css">
+
+    <script>
+        var dojoConfig = {
+           packages: [
+	           {name: "ololo", location: "/1/ololo"}
+	        ]
+        };
+    </script>
+    <script data-dojo-config="async: true" src="/1/dojo.js"></script>
+  </head>
+  <body class="claro">
+    <div>
+        <button id="btn"></button>
+        <input id="inp"></input>
+	</div>
+
+    <script>
+        require(["ololo/dojocore"], function () {
+            require(["dojo/dom", "dojo/domReady!"], function (dom) {
+                console.log(dom);
+            });
+        });
+
+        require(["ololo/dojocore", "ololo/dijitcore"], function () {
+            require(["dijit/_WidgetBase", "dojo/domReady!"], function (_WidgetBase) {
+                console.log("_WidgetBase: ", _WidgetBase);
+            });
+        });
+
+        require(["ololo/dojocore", "ololo/dijitcore", "ololo/form"], function () {
+            require(["dijit/form/Button", 
+                     "dijit/form/ValidationTextBox",
+                     "dojox/validate/regexp",
+                     "dojo/domReady!"], function (Button, ValidationTextBox, regexp) {
+
+                var button = new Button({
+					label: "Click Me!",
+					onClick: function() { console.log("First button was clicked!"); }
+				}, "btn");
+				
+                var input = new ValidationTextBox({
+                    promptMessage: "Ваше мыло",
+                    invalidMessage: "Мыло плохое",
+                    tooltipPosition: ['below','after'],
+                    pattern: regexp.emailAddress,
+                }, "inp");
+
+                button.startup();
+                input.startup();
+            });
+        });
+    </script>
+  </body>
+</html>
