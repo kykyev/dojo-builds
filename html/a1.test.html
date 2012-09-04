@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <link rel="stylesheet" href="/release/claro.css">
+  </head>
+  <body>
+      <script>
+          var dojoConfig = {
+              packages: [
+	            {name: "ololo",  location: "/release/ololo"}
+  	        ]
+          };
+      </script>
+      <script src="/release/dojo.js"></script>
+      <script>
+          require(["ololo/dojocore"], function () {
+
+              require(["dojo/request", "dojo/_base/Deferred", "dojo/domReady!"], function (request, def) {
+                  console.log(request);
+                  console.log(def);
+              });
+          });
+          require(["ololo/dojocore", "ololo/dijitcore"], function () {
+
+              require(["dojo/_base/Deferred", "dijit/_WidgetBase", "dojo/domReady!"], function (def, _WidgetBase) {
+                  console.log(_WidgetBase);
+                  console.log(def);
+              });
+          });
+      </script>
+  </body>
+</html>

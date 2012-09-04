@@ -1,8 +1,6 @@
 
-dojo-current/dojo
-dojo-current/dijit
-dojo-current/dojox
-dojo-current/util
-
+.idea/
 release/
-release1/
+
+lib/
+!/lib/readme

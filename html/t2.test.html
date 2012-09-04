@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+  </head>
+  <body>
+      <script>
+          var dojoConfig = {
+              packages: [
+	            {name: "dojo",  location: "/release", main: "dojo"}
+  	        ]
+          };
+      </script>
+      <script src="/release/dojo.js"></script>
+      <script>
+          require(["dojo"], function () {
+
+              require(["dojo/domReady!"], function () {
+                  console.log("DOM ready!!!");
+              });
+          });
+      </script>
+  </body>
+</html>
