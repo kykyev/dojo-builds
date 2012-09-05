@@ -3,4 +3,7 @@
 release/
 
 lib/
-!/lib/readme
+!lib/readme
+
+production/
+!production/readme
