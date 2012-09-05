@@ -10,9 +10,9 @@ node  ./lib/dojotoolkit/dojo/dojo.js load=build -p profiles/min.profile.js
 <pre>
 python -m SimpleHTTPServer 5000
 </pre>
-4. TODO: this should be done by Ant or smth:
+4. from project root run ant:
 <pre>
-cp release/version-1.0/dojo/dojo* release
+ant
 </pre>
 5. locate browser to 
 <pre>
