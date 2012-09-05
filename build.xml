@@ -1,0 +1,56 @@
+<project name="Prepare JS and CSS for deployment" default="deploy" basedir=".">
+
+    <target name="load-properties">
+        <property file="build.properties" />
+        <echo>Build properties are imported... OK</echo>
+    </target>
+
+    <target name="clear-production-dir" depends="load-properties">
+        <delete includeemptydirs="true">
+            <fileset dir="${prod_dir}">
+                <exclude name="readme"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="copy-base-dojo-js" depends="clear-production-dir">
+        <copy file="${base_release_dir}/${release_name}/dojo/dojo.js"
+              tofile="${prod_dir}/js/dojo.js">
+        </copy>
+    </target>
+
+    <target name="copy-application-js" depends="clear-production-dir">
+        <copy todir="${prod_dir}/js">
+            <fileset dir="${base_release_dir}"
+                     includes="${app_name}"/>
+        </copy>
+    </target>
+
+    <target name="js-done" depends="copy-base-dojo-js,copy-application-js">
+        <echo>JS tasks are done... OK</echo>
+    </target>
+
+    <target name="copy-themes-css" depends="clear-production-dir">
+        <copy todir="${prod_dir}/css">
+            <fileset dir="${base_release_dir}/${release_name}/dijit/themes">
+                <include name="${css_theme}/${css_theme}.css"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="css-done" depends="copy-themes-css">
+        <echo>CSS tasks are done... OK</echo>
+    </target>
+
+    <target name="delete-all-garbage" depends="js-done, css-done">
+        <delete includeemptydirs="true">
+            <fileset dir="${base_release_dir}">
+                <exclude name="place-for-builds"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="deploy" depends="delete-all-garbage">
+        <echo>DONE.</echo>
+    </target>
+</project>
